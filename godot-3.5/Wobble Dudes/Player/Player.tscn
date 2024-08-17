@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Player/Player.gd" type="Script" id=1]
+[ext_resource path="res://Camera/CameraJoint.gd" type="Script" id=2]
+[ext_resource path="res://Player/Models/low_poly_character.obj" type="ArrayMesh" id=3]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.504911
+height = 1.34526
+
+[node name="Player" type="KinematicBody"]
+transform = Transform( 1.01544, 0, 0, 0, 1.01544, 0, 0, 0, 1.01544, 0, 0, 0 )
+script = ExtResource( 1 )
+speed = 10.0
+gravity = 0.8
+
+[node name="CollisionShape" type="CollisionShape" parent="."]
+transform = Transform( 0.811382, 0, 0, 0, -4.34102e-08, -0.993111, 0, 0.811382, -3.54666e-08, 0.00513518, 0.183437, -0.00715661 )
+shape = SubResource( 1 )
+
+[node name="SpringArm" type="SpringArm" parent="."]
+spring_length = 5.0
+script = ExtResource( 2 )
+
+[node name="Camera" type="Camera" parent="SpringArm"]
+
+[node name="PlayerModel" type="MeshInstance" parent="."]
+transform = Transform( 0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, -0.576217, 0 )
+mesh = ExtResource( 3 )
