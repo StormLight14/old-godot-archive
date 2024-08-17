@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Path3D/PathEnd.gd" type="Script" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+size = Vector2( 13, 13 )
+
+[node name="PathEnd" type="Area2D"]
+collision_layer = 32768
+script = ExtResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="PopCooldown" type="Timer" parent="."]
+wait_time = 0.001
+
+[connection signal="area_entered" from="." to="." method="_on_PathEnd_area_entered"]
+[connection signal="timeout" from="PopCooldown" to="." method="_on_PopCooldown_timeout"]

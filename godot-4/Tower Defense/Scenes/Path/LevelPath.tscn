@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Audio/untitled.mp3" type="AudioStream" id=1]
+[ext_resource path="res://Scripts/Path3D/LevelPath.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Audio/JumpScare.png" type="Texture2D" id=3]
+
+[sub_resource type="Curve2D" id=1]
+_data = {
+"points": PackedVector2Array(  )
+}
+
+[node name="LevelPath" type="Path2D"]
+curve = SubResource( 1 )
+script = ExtResource( 2 )
+
+[node name="WaveDelay" type="Timer" parent="."]
+wait_time = 5.0
+autostart = true
+
+[node name="JumpAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -9.613
+
+[node name="JumpScare" type="Node2D" parent="."]
+visible = false
+
+[node name="Sprite2D" type="Sprite2D" parent="JumpScare"]
+texture = ExtResource( 3 )

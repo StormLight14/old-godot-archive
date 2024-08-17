@@ -1,0 +1,37 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://Assets/Weapons/Spikes/spikes_5.png" type="Texture2D" id=1]
+[ext_resource path="res://Assets/Weapons/Spikes/spikes_3.png" type="Texture2D" id=2]
+[ext_resource path="res://Assets/Weapons/Spikes/spikes_4.png" type="Texture2D" id=3]
+[ext_resource path="res://Assets/Weapons/Spikes/spikes_2.png" type="Texture2D" id=4]
+[ext_resource path="res://Assets/Weapons/Spikes/spikes_7.png" type="Texture2D" id=5]
+[ext_resource path="res://Assets/Weapons/Spikes/spikes_6.png" type="Texture2D" id=6]
+[ext_resource path="res://Assets/Weapons/Spikes/spikes_1.png" type="Texture2D" id=7]
+[ext_resource path="res://Scenes/Weapons/Spikes.gd" type="Script" id=8]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 5 ), ExtResource( 6 ), ExtResource( 1 ), ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ), ExtResource( 7 ) ],
+"loop": true,
+"name": "default",
+"speed": 0.0
+} ]
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 16.0
+
+[node name="Spikes" type="Area2D"]
+collision_layer = 2
+script = ExtResource( 8 )
+spike_count = 50
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+frames = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="PopCooldown" type="Timer" parent="."]
+wait_time = 0.005
+
+[connection signal="area_entered" from="." to="." method="_on_Spikes_area_entered"]
